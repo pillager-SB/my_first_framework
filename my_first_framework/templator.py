@@ -4,6 +4,7 @@ from os.path import join
 
 def render(template_name, folder='templates', **kwargs):
     """
+    Функция для работы с шаблонизатором.
     :param template_name: имя шаблона
     :param folder: папка в которой ищем шаблон
     :param kwargs: параметры
