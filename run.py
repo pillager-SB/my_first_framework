@@ -1,8 +1,6 @@
 from wsgiref.simple_server import make_server
-
 from my_first_framework.main import Framework
 from urls import routes, fronts
-
 
 application = Framework(routes, fronts)
 
