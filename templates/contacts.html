@@ -3,6 +3,50 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Контакты</title>
+	<style type="text/css">
+		   fieldset {
+				width: 310px;
+				margin-top: 20px;
+				border: 1px solid #d6d6d6;
+				background-color: #ffffff;
+				line-height: 1.6em;}
+			legend {
+				font-style: italic;
+				color: #666666;}
+			input[type="text"] {
+				width: 120px;
+				border: 1px solid #d6d6d6;
+				padding: 2px;
+				outline: none;}
+			input[type="text"]:focus,
+			input[type="text"]:hover {
+				background-color: #d0e2f0;
+				border: 1px solid #999999;}
+			input[type="submit"] {
+				border: 1px solid #006633;
+				background-color: #009966;
+				color: #ffffff;
+				border-radius: 5px;
+				padding: 5px;
+				margin-top: 10px;}
+			input[type="submit"]:hover {
+				border: 1px solid #006633;
+				background-color: #00CC33;
+				color: #ffffff;
+				cursor: pointer;}
+			input[type="submit"]:active {
+				border: 1px solid #006466;
+				background-color: #79c9ff;
+				color: #006633;
+				cursor: pointer;}
+			.title {
+				float: left;
+				width: 160px;
+				clear: left;}
+			.submit {
+				width: 310px;
+				text-align: right;}
+		</style>
 </head>
 <body>
 <div class="content">
@@ -14,6 +58,25 @@
 </div>
 	<h1>Это страница контактов</h1>
 	<p>На этой странице расположены все способы связи с компанией.</p>
+	<form action="" method="post">
+			<fieldset>
+				<legend>Форма регистрации</legend>
+				<p><label class="title" for="name">Ваше имя:</label>
+					 <input type="text" name="name" id="name"><br />
+					 <label class="title" for="email">Ваш email:</label>
+					 <input type="text" name="email" id="email"></p>
+				<p><label for="location" class="title">Ближайший центр:</label>
+					 <select name="location" id="location">
+						 <option value="mos">Москва</option>
+						 <option value="spb">Санкт-Петербург</option>
+						 <option value="ecb">Екатеринбург</option>
+					 </select></p>
+				<span class="title">Являетесь участником?</span>
+				<label><input type="radio" name="member" value="yes" /> Да</label>
+				<label><input type="radio" name="member" value="no"  checked /> Нет</label></p>
+			</fieldset>
+ 	    <div class="submit"><input type="submit" value="Регистрация" /></div>
+		</form>
 	<p>Страница была открыта/обновлена: {{date}}</p>
 </body>
 </html>
