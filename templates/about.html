@@ -1,19 +1,8 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>O нас</title>
-</head>
-<body>
-<div class="content">
-	<div class="header">
-		<a href="/">Главная</a>
-		<a href="#">О нас</a>
-		<a href='contacts'>Контакты</a>
-	</div>
-</div>
-	<h1>Это страница информации о компании</h1>
-	<p>Страница раскрывающая информацию о компании</p>
-	<p>Страница была открыта/обновлена: {{date}}</p>
-</body>
-</html>
+﻿{%extends 'base.html'%}
+%block title%}O нас%block title%}
+{%block content%}
+<h1>Это страница информации о компании</h1>
+<p>Страница раскрывающая информацию о компании</p>
+{%endblock%}
+
+
