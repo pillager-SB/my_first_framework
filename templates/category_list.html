@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+Список категорий
+{ %endblock% }
+{% block content %}
+    <a href="/">назад на главную</a>
+<h1>Список категорий</h1>
+    <ul>
+        {% for item in objects_list %}
+        <li>
+            {{item.name}} <span>Количество курсов: {{item.course_count()}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <div>
+        <li><a href="/courses-list/">Список курсов</a></li>
+        <li><a href="/create-course/">Создать курс</a></li>
+    </div>
+{% endblock %}

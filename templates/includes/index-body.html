@@ -1,0 +1,62 @@
+<div class="content">
+    <h1>Программы обучения</h1>
+    <p>Курсы в течение года.</p>
+    <p>Расписание действует на: {{date}} <b>(дата подставляется шаблоном)</b></p>
+    <table class="table">
+        <tr class="head">
+            <th></th>
+            <th>Москва</th>
+            <th>Уфа</th>
+            <th>Казань</th>
+        </tr>
+        <tr>
+            <th>Основы работы в редакторе Blender</th>
+            <td>Сб, 4 февраля 2023 г.<br />11:00 - 14:00</td>
+            <td>Сб, 1 апреля 2023 г.<br />11:00 - 14:00</td>
+            <td>Сб, 3 июня 2023 г.<br />11:00 - 14:00</td>
+        </tr>
+        <tr>
+            <th>Моделирование в Blender</th>
+            <td>Сб, 15 апреля 2023 г.<br />11:00 - 16:00</td>
+            <td>Сб, 17 июня 2023 г.<br />11:00 - 16:00</td>
+            <td>Сб, 5 августа 2023 г.<br />11:00 - 16:00</td>
+        </tr>
+        <tr class="even">
+            <th>Blender Python Scripting</th>
+            <td>Сб, 24 июня 2023 г.<br />11:00 - 13:00</td>
+            <td>Сб, 19 августа 2023 г.<br />11:00 - 13:00</td>
+            <td>Сб, 7 октября 2023 г.<br />11:00 - 13:00</td>
+        </tr>
+        <tr>
+            <th>Текстурирование в Blender</th>
+            <td>Сб, 27 августа 2023 г.<br />11:00 - 14:00</td>
+            <td>Сб, 14 октября 2023 г.<br />11:00 - 14:00</td>
+            <td>Сб, 2 декабря 2023 г.<br />11:00 - 14:00</td>
+        </tr>
+        <tr class="even">
+            <th>Анимация в Blender</th>
+            <td>Сб, 28 октября 2023 г.<br />11:00 - 16:00</td>
+            <td>Сб, 16 декабря 2023 г.<br />11:00 - 16:00</td>
+            <td>Сб, 3 февраля 2024 г.<br />11:00 - 16:00</td>
+        </tr>
+    </table>
+    <form action="" method="post">
+        <fieldset>
+            <legend>Форма регистрации</legend>
+            <p><label class="title" for="name">Ваше имя:</label>
+                <input type="text" name="name" id="name"><br/>
+                <label class="title" for="email">Ваш email:</label>
+                <input type="text" name="email" id="email"></p>
+            <p><label for="location" class="title">Ближайший центр:</label>
+                <select name="location" id="location">
+                    <option value="mos">Москва</option>
+                    <option value="ufa">Уфа</option>
+                    <option value="kaz">Казань</option>
+                </select></p>
+            <span class="title">Являетесь участником?</span>
+            <label><input type="radio" name="member" value="yes"/> Да</label>
+            <label><input type="radio" name="member" value="no" checked/> Нет</label></p>
+        </fieldset>
+        <div class="submit"><input type="submit" value="Регистрация"/></div>
+    </form>
+</div>

@@ -1,18 +1,14 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     {% block style %}{% include 'includes/style.html' %}{% endblock %}
 </head>
 <body>
-{% include 'includes/menu.html' %}
-{% block content %}
-{% endblock %}
-
-<div id="footer">
-    <p>Страница была открыта/обновлена: {{date}}</p>
-</div>
+    {% include 'includes/menu.html' %}
+    {% block content %}
+    {% endblock %}
 </body>
 
 </html>
