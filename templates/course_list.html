@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}
-Список курсов
+    Список курсов
 {% endblock %}
-{% block content %}
+{% block style %}
+    {% include "includes/style.html" %}
+{% endblock %}
+{% block menu %}
+	{% include "includes/menu.html" %}
+{% endblock %}
+{% block body %}
     <div>
         <a href="/">назад на главную</a>
     </div>

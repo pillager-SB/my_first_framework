@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}
-Создание курса
+    Создание курса
 {% endblock %}
-{% block content %}
+{% block style %}
+    {% include "includes/style.html" %}
+{% endblock %}
+{% block menu %}
+	{% include "includes/menu.html" %}
+{% endblock %}
+{% block body %}
 <h1>Создание категории</h1>
 <form method="post">
     <input type="text" name="name" placeholder="Название">

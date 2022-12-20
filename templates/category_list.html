@@ -1,10 +1,19 @@
 {% extends 'base.html' %}
 {% block title %}
 Список категорий
-{ %endblock% }
-{% block content %}
+{% endblock %}
+{% block title %}
+    Список курсов
+{% endblock %}
+{% block style %}
+    {% include "includes/style.html" %}
+{% endblock %}
+{% block menu %}
+	{% include "includes/menu.html" %}
+{% endblock %}
+{% block body %}
     <a href="/">назад на главную</a>
-<h1>Список категорий</h1>
+    <h1>Список категорий</h1>
     <ul>
         {% for item in objects_list %}
         <li>

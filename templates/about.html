@@ -1,8 +1,14 @@
 ﻿{% extends 'base.html' %}
 {% block title %}
-O нас
+	O нас
 {% endblock %}
-{% block content %}
+{% block style %}
+	{% include "includes/style.html" %}
+{% endblock %}
+{% block menu %}
+	{% include "includes/menu.html" %}
+{% endblock %}
+{% block body %}
 <p>Страница раскрывающая информацию о компании</p>
 {% endblock %}
 

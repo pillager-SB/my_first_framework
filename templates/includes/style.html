@@ -1,10 +1,27 @@
 <style type="text/css">
+
+    @import url(https://fonts.googleapis.com/css?family=Lato);
+
+    *, *:before, *:after{
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      font-family: 'Lato', sans-serif;
+    }
+    body {
+        margin-top: 90px;
+        margin-left: 10px;
+        font-size: 90%;
+    }
     table {
         border-spacing: 0px;
         /*width: 100%;*/
-        /*margin-bottom: 20px;*/
+        margin-bottom: 20px;
         border: 1px solid #999999;
-        /*border-collapse: collapse;*/
+        border-collapse: collapse;
+
     }
 
     .table th {
@@ -20,11 +37,12 @@
     }
 
     fieldset {
-        width: 310px;
+        width: 330px;
         margin-top: 20px;
         border: 1px solid #d6d6d6;
         background-color: #ffffff;
         line-height: 1.6em;
+
     }
 
     legend {
@@ -33,7 +51,7 @@
     }
 
     input[type="text"] {
-        width: 120px;
+        width: 160px;
         border: 1px solid #d6d6d6;
         padding: 2px;
         outline: none;
@@ -81,68 +99,55 @@
 
 
 
+/*| Navigation |*/
 
-    .menu {
-        margin: 27px auto 0;
-        position: relative;
-        width: 350px;
-        height: 50px;
-        background-color: #609cc0;
-        border-radius: 8px;
-        font-size: 0;
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 3px 10px -2px rgba(0, 0, 0, .1);
+        border: 1px solid rgba(0, 0, 0, .1);
     }
 
-    .menu a {
-        line-height: 50px;
-        height: 100%;
-        font-size: 15px;
-        display: inline-block;
+    nav ul {
+        list-style: none;
         position: relative;
-        z-index: 1;
+        float: right;
+        margin-right: 100px;
+        display: inline-table;
+    }
+
+    nav ul li {
+        float: left;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+
+    nav ul li:hover {
+        background: rgba(0, 0, 0, .15);
+    }
+
+    nav ul li:hover > ul {
+        display: block;
+    }
+
+    nav ul li {
+        float: left;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 30px 20px;
+        color: #222;
+        font-size: .9em;
+        letter-spacing: 1px;
         text-decoration: none;
         text-transform: uppercase;
-        text-align: center;
-        color: white;
-        cursor: pointer;
     }
-
-    .menu .animation {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        z-index: 0;
-        transition: all .5s ease 0s;
-        border-radius: 8px;
-    }
-
-    a:nth-child(1) {
-        width: 110px;
-    }
-
-    a:nth-child(2) {
-        width: 140px;
-    }
-
-    a:nth-child(3) {
-        width: 100px;
-    }
-
-    .menu .start-home, a:nth-child(1):hover ~ .animation {
-        width: 110px;
-        left: 0;
-        background-color: #79c9ff;
-    }
-
-    .menu .start-about, a:nth-child(2):hover ~ .animation {
-        width: 140px;
-        left: 110px;
-        background-color: #79c9ff;
-    }
-
-    .menu .contacts, a:nth-child(3):hover ~ .animation {
-        width: 100px;
-        left: 250px;
-        background-color: #79c9ff;
-    }
-
 </style>
