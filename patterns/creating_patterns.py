@@ -1,11 +1,13 @@
 from copy import deepcopy
 from quopri import decodestring
-
+from .behavioral_patterns import FileWriter, Subject
 
 # Относится к паттерну "Фабричный метод":
 # Абстрактный класс:
+
 class User:  # Абстрактный пользователь.
-    ...
+    def __init__(self, name):
+        self.name = name
 
 
 # Подклассы-потомки:
@@ -14,7 +16,9 @@ class Teacher(User):
 
 
 class Student(User):
-    ...
+    def __init__(self, name):
+        self.courses = []
+        super().__init__(name)
 
 
 # Порождающая фабрика.
@@ -26,8 +30,8 @@ class UserFactory:
     }
 
     @classmethod
-    def create(cls, type_):
-        return cls.types[type_]()
+    def create(cls, type_, name):
+        return cls.types[type_](name)
 
 
 # Относится к паттерну "Prototype":
@@ -39,12 +43,22 @@ class CoursePrototype:
 
 
 # Комбинация паттернов "Фабричный метод" и Прототип:
-class Course(CoursePrototype):
+class Course(CoursePrototype, Subject):
 
     def __init__(self, name, category):
         self.name = name
         self.category = category
         self.category.courses.append(self)
+        self.students = []
+        super().__init__()
+
+    def __getitem__(self, item):
+        return self.students[item]
+
+    def add_student(self, student: Student):
+        self.students.append(student)
+        student.courses.append(self)
+        self.notify()
 
 
 # Подклассы-потомки:
@@ -96,8 +110,8 @@ class Engine:
 
     @staticmethod
     # Использование фабричного метода.
-    def create_user(type_):
-        return UserFactory.create(type_)
+    def create_user(type_, name):
+        return UserFactory.create(type_, name)
 
     @staticmethod
     # Использование фабричного метода.
@@ -121,6 +135,11 @@ class Engine:
             if item.name == name:
                 return item
         return None
+
+    def get_student(self, name) -> Student:
+        for item in self.students:
+            if item.name == name:
+                return item
 
     @staticmethod
     def decode_value(val):
@@ -151,9 +170,10 @@ class SingletonByName(type):
 
 class Logger(metaclass=SingletonByName):
 
-    def __init__(self, name):
+    def __init__(self, name, writer=FileWriter()):
         self.name = name
+        self.writer = writer
 
-    @staticmethod
-    def log(text):
-        print('log--->', text)
+    def log(self, text):
+        text = f'log---> {text}'
+        self.writer.write(text)

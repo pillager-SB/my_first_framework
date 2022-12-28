@@ -6,19 +6,24 @@
     {% include "includes/style.html" %}
 {% endblock %}
 {% block menu %}
-	{% include "includes/menu.html" %}
+    {% include "includes/menu.html" %}
 {% endblock %}
 {% block body %}
     <div>
         <a href="/create-category/">Создать новую категорию</a>
     </div>
     <div>
-        <h1>Список существующих категорий</h1>
+        <h2>Список существующих категорий</h2>
         {% for item in objects_list %}
-        <li>
-            {{item.name}} <span>Количество курсов: {{item.course_count()}}</span>
-            <a href="/courses-list/?id={{item.id}}">Показать курсы</a>
-        </li>
+            <li>
+                {{ item.name }} <span>Количество курсов: {{ item.course_count() }}</span>
+                <a href="/courses-list/?id={{ item.id }}">Показать курсы</a>
+            </li>
         {% endfor %}
+    </div>
+    <div>
+        <li><a href="/student-list/">Список студентов</a></li>
+        <li><a href="/create-student/">Создать студента</a></li>
+        <li><a href="/add-student/">Добавить студента на курс</a></li>
     </div>
 {% endblock %}

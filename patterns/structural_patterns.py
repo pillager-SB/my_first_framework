@@ -1,5 +1,5 @@
 from time import time
-from .creating_patterns import Logger
+
 
 
 # Структурный паттерн Decorator.
@@ -32,7 +32,7 @@ class Debug:
                 end_time = time()
                 time_interval = end_time - start_time
 
-                Logger.log(f" Debug >>> {self.name} выполнялась {time_interval:2.3f} ms")
+                print(f"Debug --> {self.name} выполнялась {time_interval:2.3f} ms")
 
                 return func_result
 
