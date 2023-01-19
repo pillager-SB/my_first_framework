@@ -1,16 +1,21 @@
 from datetime import date
 from my_first_framework.templator import render
-from patterns.creating_patterns import Engine, Logger
+from patterns.сreating_patterns import Engine, Logger, MapperRegistry
 from patterns.structural_patterns import AppRoute, Debug
 from patterns.behavioral_patterns import EmailNotifier, SmsNotifier, ListView, CreateView, BaseSerializer
+from patterns.arch_sys_pattern_unit_of_work import UnitOfWork
+
+
 
 site = Engine()
 logger = Logger('main')
 email_notifier = EmailNotifier()
 sms_notifier = SmsNotifier()
+UnitOfWork.new_current()
+UnitOfWork.get_current().set_mapper_registry(MapperRegistry)
+
 
 routes = {}
-
 
 # Контроллер(Главная).
 @AppRoute(routes=routes, url='/')
@@ -18,7 +23,6 @@ class Index:
     @Debug(name='Index')
     def __call__(self, request):
         return '200 OK', render('index.html', objects_list=site.categories)
-
 
 # Контроллер(О нас).
 @AppRoute(routes=routes, url='/about/')
@@ -43,7 +47,6 @@ class PageNotExists:
     def __call__(self, request):
         return '404 WHAT', '404 PAGE Not Found'
 
-
 # Контроллер(Список курсов).
 @AppRoute(routes=routes, url='/courses-list/')
 class CoursesList:
@@ -56,6 +59,7 @@ class CoursesList:
                 'course_list.html', objects_list=category.courses, name=category.name, id=category.id)
         except KeyError:
             return '200 OK', 'Курсы еще не были добавлены.'
+
 
 
 # Контроллер(Создать курс).
@@ -94,6 +98,7 @@ class CreateCourse:
 # Контроллер(Создать категорию).
 @AppRoute(routes=routes, url='/create-category/')
 class CreateCategory:
+
     def __call__(self, request):
 
         if request['method'] == 'POST':  # Если метод POST
@@ -105,13 +110,16 @@ class CreateCategory:
 
             if category_id:
                 category = site.find_category_by_id(int(category_id))
-            new_category = site.create_category(name, category)
-            site.categories.append(new_category)
-
+            new_obj = site.create_category(name, category)
+            site.categories.append(new_obj)
+            new_obj.mark_new()
+            UnitOfWork.get_current().commit()
             return '200 OK', render('index.html', objects_list=site.categories)
         else:
             categories = site.categories
             return '200 OK', render('create_category.html', categories=categories)
+
+
 
 
 # Контроллер(Список категорий).
@@ -119,8 +127,14 @@ class CreateCategory:
 class CategoryList:
     def __call__(self, request):
         logger.log('Список категорий')
+        mapper = MapperRegistry.get_current_mapper('category')
+        print(mapper.all())
         return '200 OK', render('category_list.html',
-                                objects_list=site.categories)
+                                objects_list=mapper.all())
+
+
+
+
 
 
 # Контроллер(Копировать курс).
@@ -141,6 +155,7 @@ class CopyCourse:
 
 
 
+
             return '200 OK', render('course_list.html', objects_list=site.courses, name=new_course.category.name)
         except KeyError:
             return '200 OK', 'Курс не был добавлен.'
@@ -151,6 +166,11 @@ class CopyCourse:
 class StudentListView(ListView):
     queryset = site.students
     template_name = 'student_list.html'
+
+    def get_queryset(self):
+        mapper = MapperRegistry.get_current_mapper('student')
+        # Получение всех записей студентов.
+        return mapper.all()
 
 
 # Контроллер(Создание студента).
@@ -163,6 +183,8 @@ class StudentCreateView(CreateView):
         name = site.decode_value(name)
         new_obj = site.create_user('student', name)
         site.students.append(new_obj)
+        new_obj.mark_new()
+        UnitOfWork.get_current().commit()
 
 
 # Контроллер(Добавление студента на курс).
