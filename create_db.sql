@@ -1,0 +1,16 @@
+
+PRAGMA foreign_keys = off;
+BEGIN TRANSACTION;
+
+DROP TABLE IF EXISTS student;
+DROP TABLE IF EXISTS category;
+
+CREATE TABLE student (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, name VARCHAR (32));
+INSERT INTO student (id, name) VALUES (1, 'Student_01');
+INSERT INTO student (id, name) VALUES (2, 'Student_02');
+INSERT INTO student (id, name) VALUES (3, 'Student_02');
+CREATE TABLE category (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, name VARCHAR (64));
+
+
+COMMIT TRANSACTION;
+PRAGMA foreign_keys = on;
